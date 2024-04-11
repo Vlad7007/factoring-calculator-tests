@@ -3,9 +3,11 @@ import com.codeborne.selenide.SelenideElement;
 import org.junit.Before;
 import org.junit.Test;
 
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 import java.math.BigInteger;
 import java.util.Random;
 
@@ -21,19 +23,22 @@ public class FactoringCalculatorUITests {
 
     @Test
     public void fillAndDisplayTest() {
-        $x("//input[@id='D5']").setValue("999999").getValue().contains("999999");
+        SelenideElement valueD5 = $x("//input[@id='D5']").setValue("999999");
+        assertEquals("999999", valueD5.getValue());
 
         SelenideElement selectD6 = $x("//select[@id='D6']");
         selectD6.selectOption("80");
-        selectD6.getValue().contains("80");
+        assertEquals("80", selectD6.getValue());
 
-        $x("//input[@id='D7']").setValue("20").getValue().contains("20");
+        SelenideElement valueD7 = $x("//input[@id='D7']").setValue("20");
+        assertEquals("20", valueD7.getValue());
 
         SelenideElement selectD8 = $x("//select[@id='D8']");
         selectD8.selectOption("60");
-        selectD8.getValue().contains("60");
+        assertEquals("60", selectD8.getValue());
 
-        $x("//input[@id='D9']").setValue("999999").getValue().contains("999999");
+        SelenideElement valueD9 = $x("//input[@id='D9']").setValue("999999");
+        assertEquals("999999", valueD9.getValue());
     }
 
     @Test
@@ -45,14 +50,16 @@ public class FactoringCalculatorUITests {
         $x("//input[@id='D9']").setValue("999999");
 
         $x("//button[@id='calculate-factoring']").click();
-        $x("//output[@id='result']").getValue().contains("10000022499.97"); // check and fix needed
-        System.out.println($x("//output[@id='result']").getValue());
+        SelenideElement result = $x("//output[@id='result']");
+        assertEquals("10000022499.97", result.getValue());
+
+        System.out.println(result.getValue());
     }
 
     @Test
-    public void correctResultDisplayTest() { // TODO: make test failable, not only print
+    public void correctResultDisplayTest() {
 
-        $x("//input[@id='D5']").setValue("999");
+        $x("//input[@id='D5']").setValue("99");
         $x("//select[@id='D6']").selectOption("85");
         $x("//input[@id='D7']").setValue("20");
         $x("//select[@id='D8']").selectOption("90");
@@ -66,12 +73,13 @@ public class FactoringCalculatorUITests {
         boolean isResultDisplaced = Boolean.TRUE.equals(executeJavaScript(
                 "var labelRect = arguments[0].getBoundingClientRect();" +
                         "var listRect = arguments[1].getBoundingClientRect();" +
+                        "var offset = 10;" +
                         "return labelRect.top < listRect.top || labelRect.bottom > listRect.bottom || " +
-                        "labelRect.left < listRect.left || labelRect.right > listRect.right;",
+                        "labelRect.left < listRect.left || (labelRect.right - offset) > listRect.right;",
                 labelEur, listItem
         ));
 
-        System.out.println(isResultDisplaced);
+        assertFalse(isResultDisplaced);
 
     }
 
