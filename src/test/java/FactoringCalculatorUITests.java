@@ -128,13 +128,10 @@ public class FactoringCalculatorUITests {
 
         validatorD5.setInputValue("1");
         assertNull(validatorD5.getErrorType());
-
         validatorD5.setInputValue("-1");
         assertEquals("rangeUnderflow", validatorD5.getErrorType());
-
         validatorD5.setInputValue("0");
         assertEquals("rangeUnderflow", validatorD5.getErrorType());
-
 
 
         InputValidator validatorD7 = new InputValidator("//input[@id='D7']");
@@ -144,13 +141,10 @@ public class FactoringCalculatorUITests {
 
         validatorD7.setInputValue("1");
         assertNull(validatorD7.getErrorType());
-
         validatorD7.setInputValue("-1");
         assertEquals("rangeUnderflow", validatorD7.getErrorType());
-
         validatorD7.setInputValue("0");
         assertNull(validatorD7.getErrorType());
-
 
 
         InputValidator validatorD9 = new InputValidator("//input[@id='D9']");
@@ -160,12 +154,63 @@ public class FactoringCalculatorUITests {
 
         validatorD9.setInputValue("1");
         assertNull(validatorD9.getErrorType());
-
         validatorD9.setInputValue("-1");
         assertNull(validatorD9.getErrorType());
-
         validatorD9.setInputValue("0");
         assertNull(validatorD9.getErrorType());
+    }
+
+    @Test
+    public void testSpecialInputValidationErrorTypes() {
+
+        InputValidator validatorD5 = new InputValidator("//input[@id='D5']");
+
+        validatorD5.setInputValue("1.005");
+        assertEquals("stepMismatch", validatorD5.getErrorType());
+        validatorD5.setInputValue("10000.01");
+        assertNull(validatorD5.getErrorType());
+
+        validatorD5.setInputValue(" ");
+        assertEquals("valueMissing", validatorD5.getErrorType());
+        validatorD5.setInputValue("abcd");
+        assertEquals("valueMissing", validatorD5.getErrorType());
+
+
+
+        InputValidator validatorD7 = new InputValidator("//input[@id='D7']");
+
+        validatorD7.setInputValue("1.005");
+        assertEquals("stepMismatch", validatorD7.getErrorType());
+        validatorD7.setInputValue("15.01");
+        assertNull(validatorD7.getErrorType());
+
+        validatorD7.setInputValue("20.01");
+        assertEquals("rangeOverflow", validatorD7.getErrorType());
+
+        validatorD7.setInputValue(" ");
+        assertEquals("valueMissing", validatorD7.getErrorType());
+        validatorD5.setInputValue("abcd");
+        assertEquals("valueMissing", validatorD5.getErrorType());
+
+
+
+        InputValidator validatorD9 = new InputValidator("//input[@id='D9']");
+
+        validatorD9.setInputValue("1.005");
+        assertEquals("stepMismatch", validatorD9.getErrorType());
+        validatorD9.setInputValue("10000.01");
+        assertNull(validatorD9.getErrorType());
+
+        validatorD9.setInputValue("-1.005");
+        assertEquals("stepMismatch", validatorD9.getErrorType());
+        validatorD9.setInputValue("-10000.01");
+        assertNull(validatorD9.getErrorType());
+
+        validatorD9.setInputValue(" ");
+        assertEquals("valueMissing", validatorD9.getErrorType());
+        validatorD5.setInputValue("abcd");
+        assertEquals("valueMissing", validatorD5.getErrorType());
+
     }
 
 

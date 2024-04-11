@@ -38,8 +38,23 @@ out of bounds (based on the location of the unit).
 8. Checking for the correct error output.
 9. Repeat for every input (not select) field.
 
-#Scenario 5: Checking the limits for maximum and minimum values.
+#Scenario 6: Errors type when special invalid input
+1. Enter a value with three decimal places.
+2. Checking for the correct error output.
+3. Enter a value with two decimal places.
+4. Checking for the correct error output.
+5. Enter the space value into field.
+6. Checking for the correct error output.
+7. Enter the string value into field.
+8. Checking for the correct error output.
+9. Repeat for every input (not select) field.
+10. For interest rate enter value more than 20.
+11. Checking for the correct error output.
+12. For commission fee enter negative values.
+13. Checking for the correct error outputs.
+
+#Scenario 7: Checking the limits for maximum and minimum values.
 (Not finished yet)
 
-#Scenario 6: Validation of fields to accept only numeric values.
+#Scenario 8: Validation of fields to accept only numeric values.
 (Not started yet)
