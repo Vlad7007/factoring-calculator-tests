@@ -70,17 +70,18 @@ public class FactoringCalculatorUITests {
         SelenideElement labelEur = $$(".plain-list.-results label.units").findBy(text("EUR"));
         SelenideElement listItem = labelEur.closest("li");
 
-        boolean isResultDisplaced = Boolean.TRUE.equals(executeJavaScript(
-                "var labelRect = arguments[0].getBoundingClientRect();" +
-                        "var listRect = arguments[1].getBoundingClientRect();" +
+        assertFalse(isElementOutsideContainer(labelEur, listItem));
+    }
+
+    private static boolean isElementOutsideContainer(SelenideElement element, SelenideElement container) {
+        return Boolean.TRUE.equals(executeJavaScript(
+                "var elementRect = arguments[0].getBoundingClientRect();" +
+                        "var containerRect = arguments[1].getBoundingClientRect();" +
                         "var offset = 10;" +
-                        "return labelRect.top < listRect.top || labelRect.bottom > listRect.bottom || " +
-                        "labelRect.left < listRect.left || (labelRect.right - offset) > listRect.right;",
-                labelEur, listItem
+                        "return elementRect.top < containerRect.top || elementRect.bottom > containerRect.bottom || " +
+                        "elementRect.left < containerRect.left || (elementRect.right - offset) > containerRect.right;",
+                element, container
         ));
-
-        assertFalse(isResultDisplaced);
-
     }
 
 
