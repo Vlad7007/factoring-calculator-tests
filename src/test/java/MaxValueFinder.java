@@ -3,7 +3,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import java.math.BigInteger;
 import java.util.Random;
 
-public class MaxValueFinder { // TODO: make universal for maximum and minimum values.
+public class MaxValueFinder {
 
     private final String inputXPath;
     private final int bitLength;
@@ -44,3 +44,4 @@ public class MaxValueFinder { // TODO: make universal for maximum and minimum va
         return number.toString().length();
     }
 }
+

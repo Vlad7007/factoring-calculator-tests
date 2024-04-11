@@ -213,11 +213,31 @@ public class FactoringCalculatorUITests {
     }
 
     @Test
-    public void maxInputValueFinder() {
+    public void maxInputValueFinderForD5() { // TODO: rework needed
+//        MaxValueFinder maxD7ValueFinder = new MaxValueFinder("//input[@id='D7']", 8);
+//        BigInteger maxD7InputValue = maxD7ValueFinder.findMaxInputValue();
+//        System.out.println("Max input value: " + maxD7InputValue);
+//        System.out.println("Number of digits in max value: " + maxD7ValueFinder.countDigits(maxD7InputValue));
+
         MaxValueFinder maxD5ValueFinder = new MaxValueFinder("//input[@id='D5']", 512);
+        BigInteger maxD5InputValue = maxD5ValueFinder.findMaxInputValue();
+        System.out.println("Max input value: " + maxD5InputValue);
+        System.out.println("Number of digits in max value: " + maxD5ValueFinder.countDigits(maxD5InputValue));
+
+    }
+
+    @Test
+    public void maxAndMinInputValueFinderForD9() { // TODO: rework needed
+        LimitValueFinder maxD5ValueFinder = new LimitValueFinder("//input[@id='D9']");
+
         BigInteger maxInputValue = maxD5ValueFinder.findMaxInputValue();
         System.out.println("Max input value: " + maxInputValue);
-        System.out.println("Number of digits: " + maxD5ValueFinder.countDigits(maxInputValue));
+        System.out.println("Number of digits in max value: " + maxD5ValueFinder.countDigits(maxInputValue));
+
+//        BigInteger minInputValue = maxD5ValueFinder.findMinInputValue();
+//        System.out.println("Min input value: " + minInputValue);
+//        System.out.println("Number of digits in min value: " + maxD5ValueFinder.countDigits(minInputValue));
+
     }
 
 }

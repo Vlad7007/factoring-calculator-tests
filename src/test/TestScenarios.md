@@ -55,7 +55,8 @@ out of bounds (based on the location of the unit).
 13. Checking for the correct error outputs.
 
 #Scenario 7: Checking the limits for maximum and minimum values.
-(Not finished yet)
-
-#Scenario 8: Validation of fields to accept only numeric values.
-(Not started yet)
+1. Alternately insert values increasing the order of
+numbers in the field until an error appears
+2. Alternately insert values lowering the order of
+numbers in the field until an error appears
+(Didn't manage to finish)
