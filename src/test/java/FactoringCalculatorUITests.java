@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.junit.Assert.*;
 
 import java.math.BigInteger;
-import java.util.Random;
 
 
 public class FactoringCalculatorUITests {
@@ -213,37 +212,12 @@ public class FactoringCalculatorUITests {
 
     }
 
-
     @Test
-    public void maxInputValueCheck() {
-        System.out.println(countDigits(findMaxInputValue()));
-    }
-
-    public BigInteger findMaxInputValue() { // TODO: implement a separate class
-        int bitLength = 8;
-        Random random = new Random();
-        BigInteger value = new BigInteger(bitLength, random);
-        boolean errorFlag = false;
-        while (!errorFlag) {
-            try {
-                setInputValue(value);
-                errorFlag = $x("//ui-hint[@type='error']").exists();
-            } catch (Exception e) {
-                errorFlag = true;
-                break;
-            }
-            value = value.multiply(BigInteger.TEN);
-        }
-
-        return value.divide(BigInteger.TEN);
-    }
-
-    private void setInputValue(BigInteger value) {
-        $x("//input[@id='D5']").setValue(String.valueOf(value));
-    }
-
-    public int countDigits(BigInteger number) {
-        return number.toString().length();
+    public void maxInputValueFinder() {
+        MaxValueFinder maxD5ValueFinder = new MaxValueFinder("//input[@id='D5']", 512);
+        BigInteger maxInputValue = maxD5ValueFinder.findMaxInputValue();
+        System.out.println("Max input value: " + maxInputValue);
+        System.out.println("Number of digits: " + maxD5ValueFinder.countDigits(maxInputValue));
     }
 
 }

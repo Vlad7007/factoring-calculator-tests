@@ -48,6 +48,7 @@ out of bounds (based on the location of the unit).
 7. Enter the string value into field.
 8. Checking for the correct error output.
 9. Repeat for every input (not select) field.
+
 10. For interest rate enter value more than 20.
 11. Checking for the correct error output.
 12. For commission fee enter negative values.
