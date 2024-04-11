@@ -5,8 +5,7 @@ import org.junit.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 import java.math.BigInteger;
 import java.util.Random;
@@ -82,6 +81,44 @@ public class FactoringCalculatorUITests {
                         "elementRect.left < containerRect.left || (elementRect.right - offset) > containerRect.right;",
                 element, container
         ));
+    }
+
+    @Test
+    public void testInputValidationErrors() {
+        InputValidator validatorD5 = new InputValidator("//input[@id='D5']");
+
+        validatorD5.setInputValue("1");
+        assertFalse(validatorD5.isErrorPresent());
+
+        validatorD5.setInputValue("-1");
+        assertTrue(validatorD5.isErrorPresent());
+
+        validatorD5.setInputValue("0");
+        assertTrue(validatorD5.isErrorPresent());
+
+
+        InputValidator validatorD7 = new InputValidator("//input[@id='D7']");
+
+        validatorD7.setInputValue("1");
+        assertFalse(validatorD7.isErrorPresent());
+
+        validatorD7.setInputValue("-1");
+        assertTrue(validatorD7.isErrorPresent());
+
+        validatorD7.setInputValue("0");
+        assertFalse(validatorD7.isErrorPresent());
+
+
+        InputValidator validatorD9 = new InputValidator("//input[@id='D9']");
+
+        validatorD9.setInputValue("1");
+        assertFalse(validatorD9.isErrorPresent());
+
+        validatorD9.setInputValue("-1");
+        assertFalse(validatorD9.isErrorPresent());
+
+        validatorD9.setInputValue("0");
+        assertFalse(validatorD9.isErrorPresent());
     }
 
 
