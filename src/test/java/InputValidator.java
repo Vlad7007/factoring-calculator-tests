@@ -16,19 +16,28 @@ public class InputValidator {
     }
 
     public boolean isErrorPresent() {
-        SelenideElement errorHint = $x(inputXPath +
-                "/ancestor::div[contains(@class, 'ui-field__control')]/ui-hint[@type='error']"
-        );
-        return errorHint.exists();
+        return getErrorHintElement().exists();
     }
 
     public String getErrorMessage() {
         if (isErrorPresent()) {
-            SelenideElement errorHint = $x(inputXPath +
-                    "/ancestor::div[contains(@class, 'ui-field__control')]/ui-hint[@type='error']"
-            );
-            return errorHint.text();
+            return getErrorHintElement().text();
         }
         return "No error message present";
+    }
+
+    public String getErrorType() {
+        SelenideElement errorHint = getErrorHintElement();
+        if (errorHint.exists()) {
+            return errorHint.getAttribute("error-type");
+        } else {
+            return null;
+        }
+    }
+
+    private SelenideElement getErrorHintElement() {
+        return $x(inputXPath +
+                "/ancestor::div[contains(@class, 'ui-field__control')]/ui-hint[@type='error']"
+        );
     }
 }

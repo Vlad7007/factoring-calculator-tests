@@ -51,8 +51,6 @@ public class FactoringCalculatorUITests {
         $x("//button[@id='calculate-factoring']").click();
         SelenideElement result = $x("//output[@id='result']");
         assertEquals("10000022499.97", result.getValue());
-
-        System.out.println(result.getValue());
     }
 
     @Test
@@ -119,6 +117,55 @@ public class FactoringCalculatorUITests {
 
         validatorD9.setInputValue("0");
         assertFalse(validatorD9.isErrorPresent());
+    }
+
+    @Test
+    public void testInputValidationErrorTypes() {
+        InputValidator validatorD5 = new InputValidator("//input[@id='D5']");
+
+        validatorD5.setInputValue("");
+        assertEquals("valueMissing", validatorD5.getErrorType());
+
+        validatorD5.setInputValue("1");
+        assertNull(validatorD5.getErrorType());
+
+        validatorD5.setInputValue("-1");
+        assertEquals("rangeUnderflow", validatorD5.getErrorType());
+
+        validatorD5.setInputValue("0");
+        assertEquals("rangeUnderflow", validatorD5.getErrorType());
+
+
+
+        InputValidator validatorD7 = new InputValidator("//input[@id='D7']");
+
+        validatorD7.setInputValue("");
+        assertEquals("valueMissing", validatorD7.getErrorType());
+
+        validatorD7.setInputValue("1");
+        assertNull(validatorD7.getErrorType());
+
+        validatorD7.setInputValue("-1");
+        assertEquals("rangeUnderflow", validatorD7.getErrorType());
+
+        validatorD7.setInputValue("0");
+        assertNull(validatorD7.getErrorType());
+
+
+
+        InputValidator validatorD9 = new InputValidator("//input[@id='D9']");
+
+        validatorD9.setInputValue("");
+        assertEquals("valueMissing", validatorD9.getErrorType());
+
+        validatorD9.setInputValue("1");
+        assertNull(validatorD9.getErrorType());
+
+        validatorD9.setInputValue("-1");
+        assertNull(validatorD9.getErrorType());
+
+        validatorD9.setInputValue("0");
+        assertNull(validatorD9.getErrorType());
     }
 
 

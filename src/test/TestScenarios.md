@@ -27,6 +27,17 @@ out of bounds (based on the location of the unit).
 6. Check for error representation.
 7. Repeat for every input (not select) field.
 
+#Scenario 5: Errors type when invalid input
+1. Enter the -1 value into field.
+2. Checking for the correct error output.
+3. Enter the 0 value into field.
+4. Checking for the correct error output.
+5. Enter the 1 value into field.
+6. Checking for the correct error output.
+7. Enter the empty string into field.
+8. Checking for the correct error output.
+9. Repeat for every input (not select) field.
+
 #Scenario 5: Checking the limits for maximum and minimum values.
 (Not finished yet)
 
